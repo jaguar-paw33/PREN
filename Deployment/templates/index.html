@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://static.thenounproject.com/png/1388707-200.png"
+        type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <title>Scene Text Recognition</title>
+
+</head>
+
+<body>
+
+    <main id='dashboard'>
+
+        <header id='header'>
+            <span id='heading'>
+                Cropped Scene Text Recoginition
+            </span>
+        </header>
+
+        <div id='image-area'>
+
+            <div id='img-upload'>
+                
+                <div id='upload-text'>
+                    <span>
+                        Upload the Image Here
+                    </span>
+                    <span>
+                        <i class="fas fa-arrow-down"></i>
+                    </span>
+                </div>
+                
+                <form action="/" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="uploaded-img" id="img-uploader" required />
+                    <label for="img-uploader">Choose an Image File</label>
+                    <button type="submit">Make Prediction</button>
+                </form>
+           
+            </div>
+
+            <div id='results'>
+
+                {%if prediction == "INIT"%}
+                
+                    <div id='uploaded-img'>
+                        <img src="./static/images/welcome.jpg" alt="">
+                    </div>
+                    
+                    <div id='prediction'>
+                        <div id='prediction-label'>
+                            WELCOME
+                        </div>
+                    </div>
+                
+                {%elif prediction == "INVALID IMAGE"%}
+                
+                <div id='uploaded-img'>
+                    <img src="./static/images/invalid.png" alt="">
+                </div>
+           
+                <div id='prediction'>
+                    <div id='prediction-label'>
+                        INVALID IMAGE
+                    </div>
+                </div>
+           
+                {%else%}
+           
+                <div id='uploaded-img'>
+                    <img src="/static/images/upload.jpg" alt="">
+                </div>
+           
+                <div id='prediction'>
+                    <div id='prediction-label'>
+                        {{prediction}}
+                    </div>
+                </div>
+           
+                {%endif%}
+           
+            </div>
+
+            <div id='sample'>
+
+                <div id='sample-header'>
+                    Sample Images
+                </div>
+
+                <div id='sample-images'>
+                 
+                    <div class='sample-img'>
+                        <img src="/static/images/sample1.png" alt="">
+                    </div>
+                 
+                    <div class='sample-img'>
+                        <img src="/static/images/sample2.png" alt="">
+                    </div>
+                 
+                    <div class='sample-img'>
+                        <img src="/static/images/sample3.png" alt="">
+                    </div>
+                
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer id='footer'>
+
+            <a href="https://arxiv.org/pdf/2105.04286.pdf" target="blank" class="footer-links">
+                
+                <div class='footer-links'>
+                    <span>
+                        <i class="fas fa-scroll social"></i>
+                    </span>
+                    <span>
+                        Research Paper
+                    </span>
+                </div>
+           
+            </a>
+
+            <a href="" target="blank" class="footer-links">
+                
+                <div class='footer-links'>
+                    <span>
+                        <i class="fas fa-laptop-code social"></i>
+                    </span>
+                    <span>
+                        Paper Implementaion
+                    </span>
+                </div>
+           
+            </a>
+
+
+            <a href="" target="blank" class="footer-links">
+
+                <div class='footer-links'>
+                    <span>
+                        <i class="fab fa-blogger social"></i>
+                    </span>
+                    <span>
+                        My Blog
+                    </span>
+                </div>
+
+            </a>
+
+
+            <a href="" target="blank" class="footer-links">
+                
+                <div class='footer-links'>
+                    <span>
+                        <i class="fas fa-code social"></i>
+                    </span>
+                    <span>
+                        Source Code
+                    </span>
+                </div>
+            
+            </a>
+
+            <a href="" target="blank" class="footer-links">
+            
+                <div class='footer-links'>
+                    <span>
+                        <i class="fab fa-linkedin social"></i>
+                    </span>
+                    <span>
+                        Priyank Mishra
+                    </span>
+                </div>
+            
+            </a>
+        
+        </footer>
+
+    </main>
+
+</body>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</html>
